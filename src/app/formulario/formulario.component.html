@@ -1,35 +1,12 @@
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css" integrity="sha512-Cv93isQdFwaKBV+Z4X8kaVBYWHST58Xb/jVOcV9aRsGSArZsgAnFIhMpDoMDcFNoUtday1hdjn0nGp3+KZyyFw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
 <body id="myId">
   <section class="register-account">
     <div class="signform">
-      <div class="left">
-        <div class="bts">
-          <a href="#" class="fblogin social"
-            ><i class="fa fa-facebook"></i><span>Sign in with Facebook</span></a
-          >
-        </div>
-      </div>
-      <div class="right">
-        <div class="headit">
-          <h4>Login To Your Account</h4>
-        </div>
-        <div class="form">
-          <form class="login-form" id="login-form">
-            <input type="text" placeholder="User Name" />
-            <input type="password" placeholder="Password" />
-            <input
-              class="subbt"
-              type="submit"
-              value="Sign In"
-              style="border: none"
-            />
-          </form>
-          <input type="checkbox" id="remember" name="remember" /><span
-            style="color: #b6b6b6; font-size: 0.9em"
-          >
-            Remember Me</span
-          ><a href="#">Forgot your password?</a>
-        </div>
-      </div>
+      <h1>Inicia sesión con Facebook:</h1>
+          <button class="btn btn-primary btn-lg btn-block" (click)="loginWithFacebook()">Login con Facebook</button>
+      <h2>Estas conectado desde: </h2><span class="flag-icon flag-icon-{{getCountry()}}"></span>
     </div>
   </section>
 </body>

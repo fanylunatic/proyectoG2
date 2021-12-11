@@ -1,71 +1,31 @@
+<button class="crear" [routerLink]="'/crear'">Agregar Coach</button>
 <div id="divJuegos">
-
   <table class="juego" title="JUEGOS">
     <p class= "coach">Coaches</p>
-    <tr>
+    <tr *ngFor="let coach of coachs">
       <th>
         <div class="container">
           <div class="imag">
-            <img src="C:\Users\estef\Desktop\perfil" />
+            <img src="{{ coach.foto }}" />
+            <i class="fas fa-edit fa-lg text-info mr-2" [routerLink]="['/editarCoach/', coach.id]"></i>
+            <i class="fas fa-trash-alt fa-lg text-danger" (click)="eliminarCoach(coach.id)"></i>
           </div>
           <div class="info">
-            <p>Coach 1</p>
-            <h1>Nombre</h1>
-            <h2>Precio</h2>
+            <h1>{{ coach.nombre }}</h1>
+            <h2>{{ coach.precio | currency }}</h2>
             <p class="desc">
-              Descripcion y juegos (mucho texto)" "" "" "" "" "" ""
+              {{ coach.descripcion }}
             </p>
-            <div mat-button [routerLink]="'/contratar'"  class="btn-abrir-popup"><button>Contratar</button></div>
-          </div>
-        </div>
-      </th>
-      <th>
-        <div class="container">
-          <div class="imag">
-            <img src="C:\Users\estef\Desktop\perfil" />
-          </div>
-          <div class="info">
-            <p>Coach 2</p>
-            <h1>Nombre</h1>
-            <h2>Precio</h2>
-            <p class="desc">
-              Descripcion y juegos (mucho texto)" "" "" "" "" "" ""
-            </p>
-            <div mat-button [routerLink]="'/contratar'" class="btn-abrir-popup"><button>Contratar</button></div>
-          </div>
-        </div>
-      </th>
-    </tr>
-    <tr>
-      <th>
-        <div class="container">
-          <div class="imag">
-            <img src="C:\Users\estef\Desktop\perfil" />
-          </div>
-          <div class="info">
-            <p>Coach 3</p>
-            <h1>Nombre</h1>
-            <h2>Precio</h2>
-            <p class="desc">
-              Descripcion y juegos (mucho texto)" "" "" "" "" "" ""
-            </p>
-            <div mat-button [routerLink]="'/contratar'"  class="btn-abrir-popup"><button>Contratar</button></div>
-          </div>
-        </div>
-      </th>
-      <th>
-        <div class="container">
-          <div class="imag">
-            <img src="C:\Users\estef\Desktop\perfil" />
-          </div>
-          <div class="info">
-            <p>Coach 4</p>
-            <h1>Nombre</h1>
-            <h2>Precio</h2>
-            <p class="desc">
-              Descripcion y juegos (mucho texto)" "" "" "" "" "" ""
-            </p>
-            <div mat-button [routerLink]="'/contratar'"  class="btn-abrir-popup"><button>Contratar</button></div>
+            <google-pay-button
+            environment="TEST"
+            buttonType="buy"
+            buttonColor="black"
+            (click) = "crearPaymentData(coach.precio.toString())"
+            [paymentRequest]="paymentRequest"
+            (loadpaymentdata)="onLoadPaymentData($event)"
+            (error)="onError($event)"
+            [paymentAuthorizedCallback]="onPaymentDataAuthorized"
+            ></google-pay-button>
           </div>
         </div>
       </th>
