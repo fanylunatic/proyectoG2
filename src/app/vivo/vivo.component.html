@@ -7,6 +7,23 @@
   </head>
 <body>
 
+    <!-- Modal -->
+    <ng-template #contenido let-modal>
+
+      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-body">
+              <iframe width="100%" height="250px" [src]="videoId | youtube" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" (click)="cerrarModal()">Cerrar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+  </ng-template>
   <div class="container main-container">
     <h3 ><p style="color:#ffff;">Canal del app</p></h3>
     <hr />
@@ -22,6 +39,7 @@
             <h5 class="card-title">{{ video.snippet.title }}</h5>
             <p class="card-text">{{ video.snippet.description }}</p>
             <button class="btn btn-block btn-outline-primary" (click)="detalleVideo(video.id.videoId)" ></button>
+            <iframe width="100%" height="250px" [src]="videoId | youtube" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
           </div>
           <div class="card-footer">
             <small class="text-muted"
@@ -35,6 +53,8 @@
 
 
     <!-- Modal -->
+    <ng-template #contenido let-modal>
+
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -48,6 +68,6 @@
       </div>
     </div>
 
-
+</ng-template>
 </body>
 </html>
