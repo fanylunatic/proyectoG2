@@ -16,6 +16,11 @@ table {
   text-align: center;
 }
 
+img{
+
+  width: 500px;
+  height: 500px;
+}
 
 .sub{
   margin-top: 50px;
