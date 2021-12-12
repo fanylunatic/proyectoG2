@@ -21,6 +21,14 @@ div{
 
 }
 
+i{
+  cursor: pointer;
+}
+
+.crear{
+  margin-top: 150px;
+}
+
 tr {
   font-family: Cyber;
   border-radius: 30px;

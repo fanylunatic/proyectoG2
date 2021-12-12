@@ -12,17 +12,25 @@ import { CoachComponent } from './coach/coach.component';
 import { UsuarioComponent } from './usuario/usuario.component';
 import { VivoComponent } from './vivo/vivo.component';
 import { YoutubePipe } from './pipe/youtube.pipe';
+import { GooglePayButtonModule } from '@google-pay/button-angular';
 import { HttpClient, HttpClientModule,HttpHeaders} from '@angular/common/http';
+import { FacebookLoginProvider, SocialLoginModule, SocialAuthServiceConfig } from 'angularx-social-login';
+import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
+import { environment } from '../environments/environment';
+import { provideDatabase,getDatabase } from '@angular/fire/database';
+import { provideFirestore,getFirestore } from '@angular/fire/firestore';
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { CrearCoachComponent } from './crear-coach/crear-coach.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 const routes: Routes= [
   {path: 'formulario', component: FormularioComponent  },
   {path: 'juegos', component: JuegosComponent  },
   {path: 'inicio', component:  CoachComponent },
   {path: 'vivo', component: VivoComponent},
-  {path: 'contratar', component:  UsuarioComponent }
-
-
-
+  {path: 'contratar', component:  UsuarioComponent },
+  {path: 'crear', component: CrearCoachComponent}
 ]
 
 
@@ -37,19 +45,39 @@ const routes: Routes= [
     UsuarioComponent,
     VivoComponent,
     YoutubePipe,
-
-
-
+    CrearCoachComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    SocialLoginModule,
     BrowserAnimationsModule,
+    ReactiveFormsModule,
+    GooglePayButtonModule,
     RouterModule.forRoot(routes),
-    HttpClientModule
+    HttpClientModule,
+    AngularFirestoreModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    provideDatabase(() => getDatabase()),
+    provideFirestore(() => getFirestore())
 
   ],
-  providers: [],
+  providers: [
+    {
+      provide: 'SocialAuthServiceConfig',
+      useValue: {
+        autoLogin: false,
+        providers: [
+          {
+            id: FacebookLoginProvider.PROVIDER_ID,
+            provider: new FacebookLoginProvider(
+              '1036510950520742'
+            )
+          }
+        ]
+      } as SocialAuthServiceConfig,
+    }  
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
