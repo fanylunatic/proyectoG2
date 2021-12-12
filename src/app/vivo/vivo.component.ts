@@ -30,14 +30,12 @@ export class VivoComponent implements OnInit {
    this.videoId=a;
    console.log(this.videoId);
    $('#exampleModal').modal();
-
   }
 
   cerrarModal(){
     this.videoId="";
     $('#exampleModal').modal('hide');
   }
-
 }
 
 
